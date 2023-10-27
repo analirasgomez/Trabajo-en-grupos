@@ -7,7 +7,7 @@ import random
 palabra = ["Tembloroso", "Engranaje", "Independencia", "Colarse", "Corto", "Gritar", "Multimillonario", "Sonic", "Disculparse", "Prueba"]
 palabra_generada = random.choice (palabra)
 
-letra = input(f"La palabra genrada tiene {len(palabra_generada)} letras, elige una letra")
+letra = input(f"La palabra genrada tiene {len(palabra_generada)} letras, elige una letra o intenta adivinar la palabra: ")
 
 intentos = 5 
 
@@ -16,7 +16,12 @@ if letra in palabra_generada:
 else:
     letra_incorrecta = input(f"Esa letra no está en la palabra, te quedan {intentos-1}")
 
+if letra == palabra_generada:
+    print(f"Enhorabuena! has acertado la palabra {palabra_generada}")
+
 if intentos == 0:
     print(f"No te quedan intentos! La palabra elegida era {palabra_generada}")
+
+
 
 #hacer menú de si quieres volver a jugar
