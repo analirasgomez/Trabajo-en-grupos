@@ -16,7 +16,14 @@ if letra in palabra_generada:
 else:
     letra_incorrecta = input(f"Esa letra no está en la palabra, te quedan {intentos-1}")
 
-if letra == palabra_generada:
+
+if letra_correcta or letra_incorrecta in palabra_generada:
+    letra_correcta = input("Esa letra está en la palabra, elige otra otra")
+else:
+    letra_incorrecta = input(f"Esa letra no está en la palabra, te quedan {intentos-1}")
+
+
+if letra or letra_correcta or letra_incorrecta == palabra_generada:
     print(f"Enhorabuena! has acertado la palabra {palabra_generada}")
 
 if intentos == 0:
