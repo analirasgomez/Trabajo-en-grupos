@@ -18,4 +18,5 @@ else:
 
 if intentos == 0:
     print(f"No te quedan intentos! La palabra elegida era {palabra_generada}")
-    
+
+#hacer menú de si quieres volver a jugar
