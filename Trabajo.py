@@ -1,3 +1,19 @@
+#Chose one topic and build a program with your group
+#PRESENTA TION TEM PLA TE
+#• In a new repo
+#• There must be commitsfromall teammembers
+#• All teammembersmust upload the repository toMoodle
+# • Minimumrequirements:
+#• Use at least one class and several instantiated objects of each class.
+#• Use functions wisely.
+#• Avoid repeating code.
+#• Use at least 1 while orforloop.
+#• Use at least one library (it can be math, matpotlib orothers)
+
+
+
+
+
 #El programa que vamos a crees va a consistir en un juego para adivinar la palabra correcta.
 print("")
 
