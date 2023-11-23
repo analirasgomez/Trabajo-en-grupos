@@ -7,8 +7,16 @@ print ("- Si la letra aparece en amarillo, esa letra está en la palabra pero no
 print ("- Si la letra aparece en verde, esa letra esta bien colocada y es la correcta.")
 print ("dele al intro para empezar")
 
-palabra = "TROMPA" #Hay que hacer un diccionario de palabras en mayuscula de 6 letras e importar una ramdon de esa lista cada vez que se juegue.
-# Definimos los colores de las letras
+
+import random
+def eleccion_palabra ():
+        
+        palabras_generadas = ["ACCESO", "POQUER", "PARQUE", "IRAQUI", "ABEDUL", "CACTUS", "AHUMAR", "SONICO", "BUFALO", "CESPED"]
+        palabra_elegida = random.choice(palabras_generadas)
+        return palabra_elegida
+
+palabra = eleccion_palabra()
+
 colores = {
     "verde" : "\033[92m",
     "amarillo" : "\033[93m",
