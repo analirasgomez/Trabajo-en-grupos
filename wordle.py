@@ -9,70 +9,63 @@ print ("dele al intro para empezar")
 
 
 import random
-def eleccion_palabra ():
-        
+
+class JuegoAhorcado:
+    def __init__(self):
+        self.palabra = self.eleccion_palabra()
+        self.ganar = False
+        self.tablero = [[" _ " for _ in range(len(self.palabra))] for _ in range(6)]
+        self.colores = {
+            "verde": "\033[92m",
+            "amarillo": "\033[93m",
+            "rojo": "\033[91m",
+            "ENDC": "\033[0m",
+        }
+
+    def eleccion_palabra(self):
         palabras_generadas = ["ACCESO", "POQUER", "PARQUE", "IRAQUI", "ABEDUL", "CACTUS", "AHUMAR", "SONICO", "BUFALO", "CESPED"]
-        palabra_elegida = random.choice(palabras_generadas)
-        return palabra_elegida
+        return random.choice(palabras_generadas)
 
-palabra = eleccion_palabra()
+    def color_letra(self, letra, color):
+        return self.colores[color] + letra + self.colores["ENDC"]
 
-colores = {
-    "verde" : "\033[92m",
-    "amarillo" : "\033[93m",
-    "rojo" : "\033[91m",
-    "ENDC" : "\033[0m",
-}
+    def jugar(self):
+        contador_bucle = 0
+        while (not self.ganar) and (contador_bucle < 6):
+            texto = input("")
+            while len(texto) != len(self.palabra):
+                print(f"La palabra debe tener {len(self.palabra)} letras")
+                texto = input("")
 
-def color_letra (letra, color):
-    return colores[color] + letra + colores["ENDC"]
-    
-
-
-# Condicion de bucle para ganar 
-ganar = False
-tablero = []
-for i in range (6):                                 # Dibujar el tablero de juego donde se escribira la palabra
-    tablero.append ([" _ " for l in range(6)])        # Creamos el tablero como una matriz de 6x6 con 6 intentos de palabra (las filas (i)) y 6 letras la palabra (las columnas (l))
-    continue
-
-contador_bucle = 0
-
-while (not ganar) and (contador_bucle < 6):
-    texto = input ("")
-    while len(texto) != len(palabra):
-        print (f"La palabra debe tener {len(palabra)} letras")
-        texto = input ("")
-        continue
-    
-
-    #logica de ganar
-    if palabra == texto:
-        tablero [contador_bucle] = [l for l in texto]
-        ganar = True
-        break
-
-    #letra en la palabra aplicando los colores.
-    else:
-        test_line = []
-        for j in range (len(palabra)):
-            if texto [j] == palabra [j]:
-                test_line.append (color_letra(texto[j], "verde"))
-            elif texto [j] in palabra:
-                test_line.append (color_letra(texto[j], "amarillo"))
+            # Lógica para ganar
+            if self.palabra == texto:
+                self.tablero[contador_bucle] = [l for l in texto]
+                self.ganar = True
+                break
             else:
-                test_line.append (color_letra (texto[j], "rojo"))
+                test_line = []
+                for j in range(len(self.palabra)):
+                    if texto[j] == self.palabra[j]:
+                        test_line.append(self.color_letra(texto[j], "verde"))
+                    elif texto[j] in self.palabra:
+                        test_line.append(self.color_letra(texto[j], "amarillo"))
+                    else:
+                        test_line.append(self.color_letra(texto[j], "rojo"))
+                self.tablero[contador_bucle] = test_line
 
-        tablero[contador_bucle] = test_line
+            # Dibujar el tablero
+            for i in range(6):
+                print(" ".join(self.tablero[i]))
 
-    # Draw                                            # Separamos las filas dandole forma de matriz y juntamos las letras de cada fila.
-    for i in range(6):
-        print (" ".join(tablero[i]))
-    
-    contador_bucle += 1
-    
-    
-if ganar == True:
-    print ("¡Has ganado!")
-else: 
-    print ("ooooo, perdiste")
+            contador_bucle += 1
+
+        if self.ganar:
+            print("¡Has ganado!")
+        else:
+            print("¡Perdiste!")
+
+# Crear un objeto de la clase y comenzar el juego
+juego = JuegoAhorcado()
+
+
+juego.jugar()
